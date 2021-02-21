@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "Dishes";
+}
+@model Dish
+
+<div class="container pt-5">
+    <h1 class="text-center">Add a Dish!</h1>
+    <a asp-action="Index">Home</a>
+
+    <form asp-action="CreateDish" method="POST">
+        <div class="row mt-5">
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Calories"></label>
+                    <input asp-for="Calories">
+                    <span asp-validation-for="Calories" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="ChefId"></label>
+                    <select asp-for="ChefId" class="custom-select">
+                        @foreach (Chef chef in ViewBag.Chefs)
+                        {
+                            <option value="@chef.ChefId">@chef.FirstName @chef.LastName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="ChefId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark">Add Dish</button>
+                </div>
+            </div>
+
+            <div class="form-group col-2 offset-2">
+                <label asp-for="Tastiness"></label>
+                <select asp-for="Tastiness" class="custom-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span asp-validation-for="Tastiness" class="text-danger"></span>
+            </div>
+        </div>
+    </form>
+</div>

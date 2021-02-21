@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Chefs";
+}
+@model List<Chef>
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-10">
+            <h1 class="text-center">
+                Chefs | <a asp-action="Dishes">Dishes</a>
+            </h1>
+        </div>
+
+        <div class="col-2">
+            <a asp-action="NewChef">Add a Chef</a>
+        </div>
+    </div>
+
+    <div class="border-bottom border-dark">
+        <h3>Check out our roster of Chefs!</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col"># of Dishes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Chef chef in Model)
+                    {
+                        int age = DateTime.Now.Year - chef.DOB.Year;
+
+                                <tr>
+                                    <td>@chef.FirstName @chef.LastName</td>
+                                    <td>@age</td>
+                                    <td>@chef.CreatedDishes.Count</td>
+                                </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
