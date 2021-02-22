@@ -41,11 +41,19 @@ namespace CND.Controllers
         {
             if (ModelState.IsValid)
             {
+                int age = DateTime.Now.Year - newChef.DOB.Year;
+                
                 if (newChef.DOB > DateTime.Today)
                 {
                     ModelState.AddModelError("DOB", "Not A Future Date.");
                     return View("NewChef");
                 }
+                if (age < 18)
+                {
+                    ModelState.AddModelError("DOB", "OH NO....You Can Sign Up For Junior Chef");
+                    return View("NewChef");
+                }
+
 
                 _context.Add(newChef);
                 _context.SaveChanges();
